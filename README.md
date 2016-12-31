@@ -24,4 +24,4 @@
 
 <hr/>
 
-<p>Richard Bernardy - rbernard@usf.edu - 12/31/2016.</p>
+<p>Richard Bernardy - < a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 12/31/2016.</p>
