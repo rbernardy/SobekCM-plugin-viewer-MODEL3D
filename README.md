@@ -27,3 +27,4 @@
 <hr/>
 
 <p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 12/31/2016.</p>
+<p>I'd appreciate a courtesy notification by email if you find this plugin useful and are using it in your SobekCM-based respository.</p>
