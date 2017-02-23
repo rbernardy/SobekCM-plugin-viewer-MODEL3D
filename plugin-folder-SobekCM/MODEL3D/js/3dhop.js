@@ -17,7 +17,7 @@ function setup3dhop(sourceurl)
 				mesh  : "mesh_1",
 				color : [0.8, 0.7, 0.75],
 				transform:{
-					rotation: [0.0,0.0,0.0]
+					rotation: [-90,45,0.0]
 				}
 			}
 		},
@@ -28,7 +28,7 @@ function setup3dhop(sourceurl)
 				startTheta: 15.0,
 				startDistance: 2.5,
 				minMaxPhi: [-180, 180],
-				minMaxTheta: [-30.0, 70.0],
+				minMaxTheta: [-180,180],
 				minMaxDist: [0.5, 3.0]
 			}
 		}
