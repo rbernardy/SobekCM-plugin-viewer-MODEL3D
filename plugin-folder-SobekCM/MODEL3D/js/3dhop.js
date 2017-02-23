@@ -15,7 +15,10 @@ function setup3dhop(sourceurl)
 		modelInstances : {
 			"model_1" : { 
 				mesh  : "mesh_1",
-				color : [0.8, 0.7, 0.75]
+				color : [0.8, 0.7, 0.75],
+				transform:{
+					rotation: [0.0,0.0,0.0]
+				}
 			}
 		},
 		trackball: {

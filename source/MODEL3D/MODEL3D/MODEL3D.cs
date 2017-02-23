@@ -91,7 +91,7 @@ namespace MODEL3D
             //<!--SECTIONS-->
 
             //<!--FULLSCREEN-->
-            Output.WriteLine("              <img id=\full_on\" title=\"Exit Full Screen\" src=\"" + baseurl + "skins/dark/full_on.png\" style=\"position:absolute; visibility:hidden;\"/>");
+            Output.WriteLine("              <img id=\"full_on\" title=\"Exit Full Screen\" src=\"" + baseurl + "skins/dark/full_on.png\" style=\"position:absolute; visibility:hidden;\"/>");
             Output.WriteLine("              <img id=\"full\" title=\"Full Screen\" src=\"" + baseurl + "skins/dark/full.png\"/>");
             //<!--FULLSCREEN-->
 
