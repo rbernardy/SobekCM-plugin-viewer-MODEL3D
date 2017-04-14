@@ -6,8 +6,21 @@
 <ul>
 <li>Complete the standard SobekCM plugin installation steps.</li>
 <li>Create a new item.</li>
-<li>Upload a 3D model in the .nxs format.</li>
+<li>Upload a 3D model in the .nxs or .ply format.</li>
+<li>Upload a config.js, changing defaults if desired.</li>
 <li>Edit behaviors and add the MODEL3D viewer.</li>
+</ul>
+
+<h3>config.js file</h3>
+
+<p>The config.js file supports two different approaches to initial scene configuration - rotation &amp; start distance and/or trackball position. You can use one or the other or both in combination. The file contains variables that will be used by the setup3dhopCustom.js file. The myrot values and mystartd values are required, the tbpos value is optional.</p>
+
+<ul>
+<li>myrotx - the X value of the initial transformation rotation. Default value is 0.</li>
+<li>myrotx = the Y value of the initial transformation rotation. Default value is 0.</li>
+<li>myrotz = the Z value of the initial transformation rotation. Default value is 0.</li>
+<li>mystartd = the starting distance.</li>
+<li>tbpos = An array of the trackball position values. To make it easier to obtain this data I added an additional 'function' to the standard interface. An additional icon appears at the bottom of the tool links on the left. Use the trackball (the default is the Sphere trackball) to position the model how you want it to display initially, click the icon, and the current trackball position array will display in a popup. Copy and past this into your config.js file.</li>
 </ul>
  
 <h2>Credits</h2>
@@ -26,5 +39,5 @@
 
 <hr/>
 
-<p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 12/31/2016.</p>
+<p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 04/14/2017.</p>
 <p>I'd appreciate a courtesy notification by email if you find this plugin useful and are using it in your SobekCM-based respository.</p>
