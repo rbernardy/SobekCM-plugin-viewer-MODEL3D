@@ -42,14 +42,42 @@ namespace MODEL3D
             // Is there a .nxs file in the content folder?  Otherwise, use the models/gargo sample
             string source_url = CurrentRequest.Base_URL + "plugins/MODEL3D/models/gargo.nxs";
 
-            string network_location = SobekFileSystem.Resource_Network_Uri(BriefItem);
+            string network_location;
+
+            Output.WriteLine("<!-- bibid=[" + BriefItem.BibID + ":" + BriefItem.VID + "] -->");
+
+            try
+            {
+                network_location = SobekFileSystem.Resource_Network_Uri(BriefItem);
+            }
+            catch (Exception e)
+            {
+                Output.WriteLine("<!-- exception trying to get network_location... -->");
+                network_location = "C:/inetpub/wwwroot/temp/";
+            }
 
             // Does an *.nxs file exist?
-            String[] files = Directory.GetFiles(network_location, "*.nxs", SearchOption.TopDirectoryOnly);
+            String[] files_nxs = Directory.GetFiles(network_location, "*.nxs", SearchOption.TopDirectoryOnly);
+            String[] files_ply = Directory.GetFiles(network_location, "*.ply", SearchOption.TopDirectoryOnly);
 
-            if (files.Length>0)
+            if (files_nxs.Length > 0 || files_ply.Length > 0)
             {
-                source_url = UI_ApplicationCache_Gateway.Settings.Servers.Image_URL + SobekFileSystem.AssociFilePath(BriefItem).Replace("\\", "/") + Path.GetFileName(files[0]);
+                Output.WriteLine("<!-- found files -->");
+
+                if (files_nxs.Length > 0)
+                {
+                    Output.WriteLine("<!-- has an nxs file. -->");
+                    source_url = UI_ApplicationCache_Gateway.Settings.Servers.Image_URL + SobekFileSystem.AssociFilePath(BriefItem).Replace("\\", "/") + Path.GetFileName(files_nxs[0]);
+                }
+                else if (files_ply.Length>0)
+                {
+                    Output.WriteLine("<!-- has an ply file. -->");
+                    source_url = UI_ApplicationCache_Gateway.Settings.Servers.Image_URL + SobekFileSystem.AssociFilePath(BriefItem).Replace("\\", "/") + Path.GetFileName(files_ply[0]);
+                }
+            }
+            else
+            {
+                Output.WriteLine("<!-- no nxs or ply files found, using default -->");
             }
     
             // Fit into SobekCM item page
@@ -92,8 +120,11 @@ namespace MODEL3D
 
             //<!--FULLSCREEN-->
             Output.WriteLine("              <img id=\"full_on\" title=\"Exit Full Screen\" src=\"" + baseurl + "skins/dark/full_on.png\" style=\"position:absolute; visibility:hidden;\"/>");
-            Output.WriteLine("              <img id=\"full\" title=\"Full Screen\" src=\"" + baseurl + "skins/dark/full.png\"/>");
+            Output.WriteLine("              <img id=\"full\" title=\"Full Screen\" src=\"" + baseurl + "skins/dark/full.png\"/><br/>");
             //<!--FULLSCREEN-->
+
+            // getTBpos
+            Output.WriteLine("              <img onclick=\"alert('[' + presenter.getTrackballPosition() + '].');\" title=\"Get Trackball Position array\" src=\"" + baseurl + "skins/dark/getTBpos.png\"/>");
 
             Output.WriteLine("</div> <!-- end of toolbar -->");
 
@@ -140,17 +171,18 @@ namespace MODEL3D
             // Fit into SobekCM item page 
             Output.WriteLine("    </td>");
 
-            // testing additional jquery document ready
+            // jquery document ready
             Output.WriteLine("<script type=\"text/javascript\">");
             Output.WriteLine("$(document).ready(function()");
             Output.WriteLine("{");
             Output.WriteLine("console.log(\"additional jquery doc ready.\");");
             Output.WriteLine("init3dhop();");
             Output.WriteLine("console.log(\"3dhop - returned from init3dhop.\");");
-            Output.WriteLine("setup3dhop('" + source_url + "');");
-            Output.WriteLine("console.log(\"3dhop - returned from setup3dhop.\");");
-            Output.WriteLine("resizeCanvas(960,600);");
-            Output.WriteLine("setCenterModeScene();");
+            Output.WriteLine("setup3dhopCustom('" + source_url + "');");
+            Output.WriteLine("console.log(\"3dhop - returned from setup3dhopCustom.\");");
+            Output.WriteLine("resizeCanvas(960,620);");
+            // Removed 2017-03-30 17:16 - observed javascript error message in console - not found
+            //Output.WriteLine("setCenterModeScene();");
             Output.WriteLine("setCenterModeSpecific(\"model_1\");");
             Output.WriteLine("moveMeasurementbox(\"450px\",\"50px\")");
             Output.WriteLine("actionsToolbar(\"zoomin\");");
@@ -170,10 +202,30 @@ namespace MODEL3D
             String baseurl = CurrentRequest.Base_URL + "plugins/MODEL3D/";
             Output.WriteLine("  <link rel=\"stylesheet\" type=\"text/css\" href=\"" + baseurl + "stylesheet/3dhop.css\"/>");
 
+            String path;
+            Random rnd = new Random();
+
+            try
+            {
+                Output.WriteLine("<!-- Write_Within_HTML_Head: packageid=[" + BriefItem.BibID + ":" + BriefItem.VID + "].-->");
+
+                path = UI_ApplicationCache_Gateway.Settings.Servers.Image_URL;
+                Output.WriteLine("<!-- Image_URL=[" + path + "-->");
+
+                path += SobekFileSystem.AssociFilePath(BriefItem.BibID,BriefItem.VID).Replace("\\", "/");
+                Output.WriteLine("  <script type=\"text/javascript\" src=\"" + path + "config.js?n=" + rnd.Next(1,(2^32)-1) + "\"></script>");
+            }
+            catch (Exception e)
+            {
+                Output.WriteLine("<!-- item content path not found -->\r\n<script type=\"text/javascript\">var myrotx=0;\r\nvar myroty=0;\r\nvar myrotz=0;</script>");
+            }
+
             // my encapsulation of js in original index_all_tools.html
             Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/3dhop.js\"></script>");
 
-            Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/spidergl.js\"></script>");
+            Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/setup3dhopCustom.js\"></script>");
+
+            Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/spidergl.min.js\"></script>");
             //Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/jquery.js\"></script>");
             Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/presenter.js\"></script>");
             Output.WriteLine("  <script type=\"text/javascript\" src=\"" + baseurl + "js/nexus.js\"></script>");
