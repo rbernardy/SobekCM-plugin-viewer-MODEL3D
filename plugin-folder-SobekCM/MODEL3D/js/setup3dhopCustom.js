@@ -42,6 +42,29 @@ else
 	console.log("The tbpos array does NOT exist.");
 }
 
+if (typeof myskinbackgroundfile !== 'undefined')
+{
+	url_bi="/plugins/MODEL3D/skins/backgrounds/" + myskinbackgroundfile;
+	console.log("myskinbackgroundfile is defined: url_bi=[" + url_bi + "].");
+	$("canvas#draw-canvas").prop("style","");
+	$("canvas#draw-canvas").css("background-image","url(" + url_bi + ")");
+}
+else
+{
+	console.log("myskinbackgroundfile is undefined.");
+}
+
+if (typeof mybackgroundcolor !== 'undefined')
+{
+	console.log("mybackgroundcolor is defined [" + mybackgroundcolor + "].");
+	$("canvas#draw-canvas").prop("style","");
+	$("canvas#draw-canvas").css("background-color",mybackgroundcolor);
+}
+else
+{
+	console.log("mybackgroundcolor is undefined.");
+}
+
 //--MEASURE--
         presenter._onEndMeasurement = onEndMeasure;
 //--MEASURE--
