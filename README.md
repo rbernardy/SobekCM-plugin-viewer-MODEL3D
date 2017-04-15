@@ -1,5 +1,5 @@
 # SobekCM-plugin-viewer-MODEL3D
-<p>SobekCM-plugin-viewer-MODEL3D is a plugin for the open-source SobekCM Digital Repository software (Mark V. Sullivan, lead developer). It provides a viewer for 3D model content (nxs format) using 3DHOP, a HTML5-WebGL viewer created by Marco Potenziani and Marco Callieri.</p>
+<p>SobekCM-plugin-viewer-MODEL3D is a plugin for the open-source SobekCM Digital Repository software (Mark V. Sullivan, lead developer). It provides a viewer for 3D model content (nxs or ply format) based on 3DHOP, a HTML5-WebGL viewer created by Marco Potenziani and Marco Callieri.</p>
 
 <h2>Testing the plugin:</h2>
 
@@ -21,6 +21,8 @@
 <li>myrotz = the Z value of the initial transformation rotation. Default value is 0.</li>
 <li>mystartd = the starting distance.</li>
 <li>tbpos = An array of the trackball position values. To make it easier to obtain this data I added an additional 'function' to the standard interface. An additional icon appears at the bottom of the tool links on the left. Use the trackball (the default is the Sphere trackball) to position the model how you want it to display initially, click the icon, and the current trackball position array will display in a popup. Copy and past this into your config.js file.</li>
+<li>myskinbackgroundfile = The file name of the skin background image file for the canvas. Optional - if not used the default is skins/dark/light.jpg.</li>
+<li>mybackgroundcolor = Color value for background of the canvas. Optional - if not used, if the myskinbackgroundfile value exists that will be used, otherwise the default background-image file is used - skins/dark/light.jpg. If both myskinbackgroundfile and mybackgroundcolor exists the mybackgroundcolor is used and the myskinbackgroundfile is ignored.</li>
 </ul>
  
 <h2>Credits</h2>
@@ -35,9 +37,9 @@
 
 <p><a href="http://vcg.isti.cnr.it/nexus/">NEXUS</a> tools - the NEXUS Windows console apps are used to generate multi-resolution nxs content.</p>
 
-<p>3DHOP - using their gargo.nxs sample 3D model content as the default content if a .nxs file is not available in the SobekCM item content folder. The sample content used is in the 3DHOP/models folder in the 3DHOP official distribution file (currently 4.1) which is linked on the <a href="http://vcg.isti.cnr.it/3dhop/download.php">3DHOP download</a> page.</p>
+<p>3DHOP - using their gargo.nxs sample 3D model content as the default content if a .nxs or .ply file is not available in the SobekCM item content folder. The sample content used is in the 3DHOP/models folder in the 3DHOP official distribution file (currently 4.1) which is linked on the <a href="http://vcg.isti.cnr.it/3dhop/download.php">3DHOP download</a> page.</p>
 
 <hr/>
 
-<p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 04/14/2017.</p>
+<p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 04/15/2017.</p>
 <p>I'd appreciate a courtesy notification by email if you find this plugin useful and are using it in your SobekCM-based respository.</p>
