@@ -15,21 +15,16 @@ function setup3dhop(sourceurl)
 		modelInstances : {
 			"model_1" : { 
 				mesh  : "mesh_1",
-				color : [0.8, 0.7, 0.75],
+				color : [0.85, 0.85, 0.85],
 				transform:{
-					rotation: [-90,45,0.0]
+					rotation: [-90,45,0]
 				}
 			}
 		},
 		trackball: {
-			type : TurntablePanTrackball,
+			type : SphereTrackball,
 			trackOptions : {
-				startPhi: 35.0,
-				startTheta: 15.0,
 				startDistance: 2.5,
-				minMaxPhi: [-180, 180],
-				minMaxTheta: [-180,180],
-				minMaxDist: [0.5, 3.0]
 			}
 		}
 	});

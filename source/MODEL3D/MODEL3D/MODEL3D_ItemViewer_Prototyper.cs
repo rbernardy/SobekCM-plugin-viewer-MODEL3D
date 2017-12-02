@@ -93,5 +93,10 @@ namespace MODEL3D
         {
             return new MODEL3D_ItemViewer(CurrentItem, CurrentUser, CurrentRequest, Tracer);
         }
+
+        public void Add_Menu_Items(BriefItemInfo CurrentItem, User_Object CurrentUser, Navigation_Object CurrentRequest, List<Item_MenuItem> MenuItems, bool IpRestricted)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
